@@ -38,12 +38,15 @@ jobs:
         run: |
           ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | tee build.log || (echo "=== GRADLE LOG ===" && tail -n 100 build.log && exit 1)
 
+      - name: List APK output files
+        working-directory: android
+        run: ls -la app/build/outputs/apk/debug/
+
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
+          name: Zenith26-Event-Portal-App
+          path: android/app/build/outputs/apk/debug/*.apk
           retention-days: 30
 
       - name: Create GitHub Release with APK
@@ -53,9 +56,10 @@ jobs:
           tag_name: v1.0.0
           name: "Zenith '26 Android App v1.0.0"
           body: "Direct download of the native Kotlin Android APK for Zenith '26 College Fest Management System. Upload this .apk to Appetize.io or install it directly on an Android device."
-          files: android/app/build/outputs/apk/debug/app-debug.apk
+          files: android/app/build/outputs/apk/debug/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Upload Build Log on Failure
         if: failure()
