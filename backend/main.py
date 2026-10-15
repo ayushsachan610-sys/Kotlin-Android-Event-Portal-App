@@ -469,3 +469,13 @@ def serve_admin():
     if admin_file.exists():
         return FileResponse(admin_file)
     return {"message": "frontend/admin.html not found"}
+
+
+@app.get("/manifest.json", include_in_schema=False)
+def serve_manifest():
+    """Serves the PWA web app manifest."""
+    manifest_file = FRONTEND_DIR / "manifest.json"
+    if manifest_file.exists():
+        return FileResponse(manifest_file, media_type="application/manifest+json")
+    return {"message": "frontend/manifest.json not found"}
+
