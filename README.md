@@ -1,8 +1,25 @@
 # ⚡ Zenith '26 — College Fest Management System
 
-A production-ready full-stack College Fest Management System built for **PM2-01 (How Software Works)** and **PM2-02 (Front-End, Back-End & Mobile)**.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ayushsachan610-sys/Kotlin-Android-Event-Portal-App)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/ayushsachan610-sys/Kotlin-Android-Event-Portal-App)
 
-Zenith '26 features an interactive student-facing event portal and a real-time admin operational dashboard backed by a robust FastAPI server and SQLite relational database, with clients implemented for both **Web (HTML5 + Tailwind CSS)** and **Native Android (Kotlin + XML Layouts)**.
+---
+
+## 🌐 24/7 Permanent Live Cloud Deployment
+
+Unlike `localhost` which turns off when your personal computer is asleep or shutdown, this application is configured for **24/7 permanent cloud hosting** with free SSL (`https://`):
+
+| Interface | Permanent Cloud Link | Description |
+| :--- | :--- | :--- |
+| **Student Event Portal** | **[https://kotlin-android-event-portal-app.onrender.com/](https://kotlin-android-event-portal-app.onrender.com/)** | Discover 14 seeded events, search, category filter, view details & register |
+| **Admin Coordinator Dashboard** | **[https://kotlin-android-event-portal-app.onrender.com/admin.html](https://kotlin-android-event-portal-app.onrender.com/admin.html)** | Real-time capacity utilization, attendance stats, registrations & event publishing |
+| **Interactive Swagger API Docs** | **[https://kotlin-android-event-portal-app.onrender.com/docs](https://kotlin-android-event-portal-app.onrender.com/docs)** | OpenAPI schema verification & interactive endpoint execution |
+
+### 🚀 1-Click Free Cloud Activation (Takes 60 seconds):
+1. Click the **[Deploy to Render](https://render.com/deploy?repo=https://github.com/ayushsachan610-sys/Kotlin-Android-Event-Portal-App)** button above.
+2. Sign in with GitHub (free, no credit card required).
+3. Click **Apply / Create Web Service**. Render reads [`render.yaml`](render.yaml) and deploys your FastAPI server and SQLite database online 24/7.
+4. **On Your Android Phone / App**: Tap the **⚙️ Settings** icon in the header > Tap **`☁️ Permanent Cloud Server (24/7 Online)`** > Tap **Save & Apply**! The phone app will now work anywhere in the world on mobile data (4G/5G) or Wi-Fi.
 
 ---
 

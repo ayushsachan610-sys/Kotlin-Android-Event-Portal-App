@@ -48,6 +48,10 @@ class ServerSettingsDialogFragment : DialogFragment() {
             dismiss()
         }
 
+        binding.btnPresetCloud.setOnClickListener {
+            binding.etServerUrl.setText(ApiConfig.PERMANENT_CLOUD_URL)
+        }
+
         binding.btnPresetEmulator.setOnClickListener {
             binding.etServerUrl.setText(ApiConfig.DEFAULT_EMULATOR_URL)
         }

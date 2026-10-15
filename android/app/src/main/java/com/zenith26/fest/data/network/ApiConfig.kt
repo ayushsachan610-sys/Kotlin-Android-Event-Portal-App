@@ -7,7 +7,10 @@ object ApiConfig {
     private const val PREFS_NAME = "zenith26_api_prefs"
     private const val KEY_BASE_URL = "api_base_url"
 
-    // Default for Android Emulator to communicate with host machine (Port 8021)
+    // 24/7 Permanent Cloud URL (Render.com free deployment)
+    const val PERMANENT_CLOUD_URL = "https://kotlin-android-event-portal-app.onrender.com/"
+
+    // Localhost & Emulator defaults
     const val DEFAULT_EMULATOR_URL = "http://10.0.2.2:8021/"
     const val DEFAULT_LOCALHOST_URL = "http://127.0.0.1:8021/"
     const val DEFAULT_LAN_URL = "http://172.16.53.144:8021/"
