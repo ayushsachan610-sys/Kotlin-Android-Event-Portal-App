@@ -30,8 +30,76 @@ const modalSeats = document.getElementById("modal-seats");
 const modalDescription = document.getElementById("modal-description");
 const modalEventId = document.getElementById("modal-event-id");
 
+// Spooky Oracle Elements
+const spookyOracleModal = document.getElementById("spooky-oracle-modal");
+const oracleCloseBtn = document.getElementById("oracle-close-btn");
+const closeOracleBtn = document.getElementById("close-oracle-btn");
+const nextJokeBtn = document.getElementById("next-joke-btn");
+const oracleJokeBox = document.getElementById("oracle-joke-box");
+const spookyOracleBtn = document.getElementById("spooky-oracle-btn");
+const spookySoundBtn = document.getElementById("spooky-sound-btn");
+
 // ----------------------------------------------------------------------------
-// Category badge style helper
+// Spooky Comedy Jokes & Developer Fortunes
+// ----------------------------------------------------------------------------
+const SPOOKY_JOKES = [
+  "🎃 <strong>Developer Horror Story:</strong> Why do programmers love Halloween? Because OCT 31 == DEC 25! 🧙‍♂️",
+  "👻 <strong>Spectral Warning:</strong> There are only two things that terrify developers: ghosts, and touching legacy code on a Friday at 5:00 PM! 💀",
+  "🧛 <strong>Vampire Fact:</strong> Count Dracula loves programming in <em>C-Sharp</em> because it sharpens his fangs! 🩸",
+  "🧟‍♂️ <strong>Zombie Alert:</strong> Why did the zombie join the hackathon? Because he heard developers were running out of brains! 🧠",
+  "☕ <strong>Fest Survival Rule:</strong> Coffee machines are currently operating on dark roast witchcraft and 400% caffeine sorcery! ⚡",
+  "🔮 <strong>The Oracle Predicts:</strong> Your registration will succeed, but you will definitely need a nap before the midnight hackathon! 🛌",
+  "🧙‍♀️ <strong>Grimoire Wisdom:</strong> <em>'Double, double, toil and trouble; undefined is not a function in the bubble!'</em> 🧪",
+  "🕷️ <strong>Spider Notice:</strong> The spider in the top-right corner is our chief QA engineer. Bug count is currently 0! 🕸️",
+  "⚰️ <strong>Afterlife Assurance:</strong> If your code segfaults at 3:00 AM, the festival ghosts will automatically format your tabs to spaces! 🦇"
+];
+
+let currentJokeIndex = 0;
+
+// ----------------------------------------------------------------------------
+// Web Audio API Synthesizer (Funny Sound Effects without external files)
+// ----------------------------------------------------------------------------
+function playSpookySound(type = "cackle") {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+
+    if (type === "cackle") {
+      const freqs = [587, 659, 784, 880, 784, 988, 1174, 880, 587];
+      freqs.forEach((f, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(f + (Math.random() * 40 - 20), ctx.currentTime + idx * 0.07);
+        gain.gain.setValueAtTime(0.09, ctx.currentTime + idx * 0.07);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.07 + 0.11);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + idx * 0.07);
+        osc.stop(ctx.currentTime + idx * 0.07 + 0.11);
+      });
+    } else if (type === "chime") {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(440, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.3);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+    }
+  } catch (e) {
+    // Silent catch if audio context is blocked
+  }
+}
+
+
+// ----------------------------------------------------------------------------
+// Category badge & spooky tag helper
 // ----------------------------------------------------------------------------
 function getCategoryBadgeClasses(category) {
   switch (category.toLowerCase()) {
@@ -44,9 +112,26 @@ function getCategoryBadgeClasses(category) {
     case "gaming":
       return "bg-emerald-500/20 text-emerald-300 border-emerald-500/30";
     case "workshop":
-      return "bg-violet-500/20 text-violet-300 border-violet-500/30";
+      return "bg-purple-500/20 text-purple-300 border-purple-500/30";
     default:
-      return "bg-slate-700/50 text-slate-300 border-slate-600/50";
+      return "bg-slate-800 text-slate-300 border-slate-700";
+  }
+}
+
+function getCategorySpookyTag(category) {
+  switch (category.toLowerCase()) {
+    case "technical":
+      return "👻 0 Syntax Errors Guaranteed";
+    case "cultural":
+      return "🧛 Vampire Waltz Approved";
+    case "sports":
+      return "🧟 Zombie Cardio Workout";
+    case "gaming":
+      return "💀 Infinite Respawns Enabled";
+    case "workshop":
+      return "🧙‍♂️ Potions & Grimoire 101";
+    default:
+      return "🎃 100% Haunted";
   }
 }
 
@@ -59,8 +144,12 @@ async function fetchAndRenderEvents() {
   statusContainer.className = "py-16 text-center animate-fade-in";
   statusContainer.innerHTML = `
     <div class="inline-flex flex-col items-center justify-center space-y-3">
-      <div class="w-10 h-10 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin"></div>
-      <p class="text-sm font-medium text-slate-400">Loading Zenith '26 events...</p>
+      <div class="w-12 h-12 border-4 border-orange-500/30 border-t-orange-500 rounded-full animate-spin"></div>
+      <p class="text-sm font-bold text-orange-300 flex items-center gap-2">
+        <span>🎃</span>
+        <span>Summoning Zenith '26 fest events from the crypts...</span>
+        <span>👻</span>
+      </p>
     </div>
   `;
 
@@ -91,12 +180,12 @@ async function fetchAndRenderEvents() {
     if (!events || events.length === 0) {
       statusContainer.className = "py-16 text-center animate-fade-in";
       statusContainer.innerHTML = `
-        <div class="max-w-md mx-auto p-6 bg-slate-800/40 rounded-2xl border border-slate-700/60">
-          <span class="text-4xl block mb-2">🔍</span>
-          <h3 class="text-base font-bold text-slate-200">No events match your search</h3>
-          <p class="text-xs text-slate-400 mt-1">Try clearing your search query or selecting a different category.</p>
-          <button id="reset-filters-btn" class="mt-4 px-4 py-1.5 rounded-lg text-xs font-semibold bg-violet-600 hover:bg-violet-500 text-white transition">
-            Reset Filters
+        <div class="max-w-md mx-auto p-6 bg-slate-900/80 rounded-2xl border border-orange-900/60 shadow-xl text-center">
+          <span class="text-5xl block mb-2 animate-wobble-pumpkin">🕷️</span>
+          <h3 class="text-base font-bold text-orange-300">No spirits found in this corner!</h3>
+          <p class="text-xs text-slate-400 mt-1">Try banishing your search query or picking another cursed category.</p>
+          <button id="reset-filters-btn" class="mt-4 px-4 py-2 rounded-xl text-xs font-bold bg-orange-600 hover:bg-orange-500 text-white transition active:scale-95 shadow-md shadow-orange-950">
+            🎃 Reset Filters
           </button>
         </div>
       `;
@@ -123,12 +212,12 @@ async function fetchAndRenderEvents() {
     console.error("Failed to fetch events:", error);
     statusContainer.className = "py-16 text-center animate-fade-in";
     statusContainer.innerHTML = `
-      <div class="max-w-md mx-auto p-6 bg-rose-950/40 rounded-2xl border border-rose-800/60 text-slate-200">
-        <span class="text-4xl block mb-2">⚠️</span>
-        <h3 class="text-base font-bold text-rose-300">Could not connect to the server</h3>
-        <p class="text-xs text-slate-400 mt-1 mb-4">Make sure the FastAPI backend is running at http://localhost:8021.</p>
-        <button id="retry-fetch-btn" class="px-4 py-2 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white transition">
-          Retry Loading
+      <div class="max-w-md mx-auto p-6 bg-rose-950/60 rounded-2xl border border-rose-800/60 text-slate-200 shadow-xl">
+        <span class="text-5xl block mb-2 animate-pulse">💀</span>
+        <h3 class="text-base font-bold text-rose-300">The Server Ghouls Are Sleeping</h3>
+        <p class="text-xs text-slate-400 mt-1 mb-4">Could not summon events from the FastAPI backend. Make sure the server is awake!</p>
+        <button id="retry-fetch-btn" class="px-4 py-2 rounded-xl text-xs font-bold bg-rose-600 hover:bg-rose-500 text-white transition active:scale-95">
+          ⚡ Re-awaken Backend
         </button>
       </div>
     `;
@@ -137,30 +226,31 @@ async function fetchAndRenderEvents() {
 }
 
 // ----------------------------------------------------------------------------
-// Create Event Card HTML
+// Create Event Card HTML with Halloween Comedy & Animation
 // ----------------------------------------------------------------------------
 function createEventCardHTML(event) {
   const isFull = event.available_seats === 0;
   const badgeClasses = getCategoryBadgeClasses(event.category);
-  const feeDisplay = event.fee > 0 ? `₹${event.fee}` : "Free";
+  const spookyTag = getCategorySpookyTag(event.category);
+  const feeDisplay = event.fee > 0 ? `₹${event.fee}` : "Free Ritual";
 
   // Seats status badge
   let seatBadge;
   if (isFull) {
-    seatBadge = `<span class="px-2 py-0.5 rounded-md text-xs font-black bg-rose-500 text-white uppercase tracking-wider animate-pulse">FULL</span>`;
+    seatBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-black bg-rose-600 text-white uppercase tracking-wider animate-pulse flex items-center gap-1"><span>💀</span><span>COFFINS FULL</span></span>`;
   } else if (event.available_seats <= 10) {
-    seatBadge = `<span class="px-2 py-0.5 rounded-md text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30">${event.available_seats} / ${event.capacity} seats left</span>`;
+    seatBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-orange-500/20 text-orange-300 border border-orange-500/40 flex items-center gap-1"><span>🎃</span><span>${event.available_seats} / ${event.capacity} seats left</span></span>`;
   } else {
-    seatBadge = `<span class="px-2 py-0.5 rounded-md text-xs font-medium text-slate-400">${event.available_seats} / ${event.capacity} seats</span>`;
+    seatBadge = `<span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-400 flex items-center gap-1"><span>🍬</span><span>${event.available_seats} / ${event.capacity} seats</span></span>`;
   }
 
   return `
-    <article class="group bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-violet-500/50 rounded-2xl p-5 shadow-lg shadow-black/20 hover:shadow-violet-900/20 transition-all duration-200 flex flex-col justify-between animate-fade-in">
+    <article class="group bg-slate-900/90 hover:bg-slate-900 border border-orange-950 hover:border-orange-500/60 rounded-2xl p-5 shadow-lg shadow-black/40 hover:shadow-orange-950/40 transition-all duration-200 flex flex-col justify-between animate-fade-in relative overflow-hidden halloween-glow-card">
       <div>
         <!-- Top row: Icon, Category Badge, Fee -->
         <div class="flex items-center justify-between mb-3.5">
-          <span class="text-3xl p-2 rounded-xl bg-slate-900 border border-slate-700/60 group-hover:scale-105 transition-transform">
-            ${event.icon || "⚡"}
+          <span class="text-3xl p-2.5 rounded-xl bg-slate-950 border border-orange-900/60 group-hover:scale-110 group-hover:rotate-6 transition-transform shadow-inner">
+            ${event.icon || "🎃"}
           </span>
           <div class="flex items-center gap-2">
             <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold border ${badgeClasses}">
@@ -172,8 +262,15 @@ function createEventCardHTML(event) {
           </div>
         </div>
 
+        <!-- Comedy Tag -->
+        <div class="mb-2">
+          <span class="text-[10px] font-bold text-orange-400/90 bg-orange-950/60 px-2 py-0.5 rounded border border-orange-800/40">
+            ${spookyTag}
+          </span>
+        </div>
+
         <!-- Title & Description preview -->
-        <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-violet-300 transition-colors line-clamp-1">
+        <h3 class="text-lg font-black text-white tracking-tight group-hover:text-orange-300 transition-colors line-clamp-1">
           ${event.title}
         </h3>
         <p class="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed min-h-[2rem]">
@@ -181,31 +278,33 @@ function createEventCardHTML(event) {
         </p>
 
         <!-- Metadata (Date/Time & Venue) -->
-        <div class="mt-4 pt-3 border-t border-slate-700/60 space-y-1.5 text-xs text-slate-300">
+        <div class="mt-4 pt-3 border-t border-slate-800 space-y-1.5 text-xs text-slate-300">
           <div class="flex items-center gap-2">
-            <span class="text-slate-500">📅</span>
+            <span class="text-orange-400">📅</span>
             <span>${event.event_date} &bull; ${event.event_time}</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-slate-500">📍</span>
+            <span class="text-orange-400">📍</span>
             <span class="truncate">${event.venue}</span>
           </div>
         </div>
       </div>
 
       <!-- Bottom row: Seats & Action button -->
-      <div class="mt-5 pt-3 border-t border-slate-700/60 flex items-center justify-between gap-3">
+      <div class="mt-5 pt-3 border-t border-slate-800 flex items-center justify-between gap-3">
         <div>${seatBadge}</div>
         <button
           data-event-id="${event.id}"
-          class="view-details-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-violet-600 hover:bg-violet-500 active:bg-violet-700 text-white shadow-md shadow-violet-900/30 hover:shadow-violet-600/40 transition active:scale-95"
+          class="view-details-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 active:from-orange-700 active:to-amber-700 text-white shadow-md shadow-orange-950 hover:shadow-orange-600/40 transition active:scale-95 flex items-center gap-1.5"
         >
-          View Details
+          <span>🎃</span>
+          <span>View Details</span>
         </button>
       </div>
     </article>
   `;
 }
+
 
 // ----------------------------------------------------------------------------
 // Open & Populate Event Detail Modal
@@ -319,8 +418,9 @@ registrationForm.addEventListener("submit", async (e) => {
 
     if (res.status === 201) {
       // Success (201)
+      playSpookySound("chime");
       showModalAlert(
-        `🎉 Successfully registered for <strong>${currentSelectedEvent?.title || 'the event'}</strong>! Registration ID: #${data.id}`,
+        `🎉 <strong>HAUNTED SUCCESS!</strong> Your mortal presence has been secured for <strong>${currentSelectedEvent?.title || 'the event'}</strong>! 🎃 Registration Grimoire ID: <strong>#${data.id}</strong>. A festival spirit has dispatched your confirmation raven! 🦇`,
         "success"
       );
       registrationForm.reset();
@@ -328,18 +428,22 @@ registrationForm.addEventListener("submit", async (e) => {
       // Refresh event seat count in modal and grid
       await fetchAndRenderEvents();
 
-      // Automatically close modal after 1.8 seconds
+      // Automatically close modal after 2.4 seconds
       setTimeout(() => {
         closeEventModal();
-      }, 1800);
+      }, 2400);
     } else {
       // 400 or 409 or other server-side validation error
-      const errorMessage = data.detail || "Registration failed. Please check your inputs.";
+      playSpookySound("cackle");
+      let errorMessage = data.detail || "Registration ritual failed. Please check your mortal inputs.";
+      if (res.status === 409) {
+        errorMessage = `💀 <strong>CURSED DUPLICATION:</strong> ${errorMessage} (The Book of the Dead already contains this soul for this event!)`;
+      }
       showModalAlert(errorMessage, "error");
     }
   } catch (err) {
     console.error("Registration request failed:", err);
-    showModalAlert("Network error: Could not connect to backend server.", "error");
+    showModalAlert("💀 <strong>SPELL DISRUPTED:</strong> Network error — Could not reach the festival server.", "error");
   } finally {
     regSubmitBtn.disabled = false;
     regSubmitBtn.querySelector("span").textContent = originalBtnText;
@@ -349,9 +453,9 @@ registrationForm.addEventListener("submit", async (e) => {
 function showModalAlert(message, type) {
   modalAlert.classList.remove("hidden");
   if (type === "success") {
-    modalAlert.className = "mb-4 p-3.5 rounded-xl text-xs sm:text-sm font-medium bg-emerald-950/70 text-emerald-200 border border-emerald-700/80 animate-fade-in";
+    modalAlert.className = "mb-4 p-3.5 rounded-xl text-xs sm:text-sm font-medium bg-emerald-950/80 text-emerald-200 border border-emerald-500/80 animate-fade-in shadow-lg shadow-emerald-950";
   } else {
-    modalAlert.className = "mb-4 p-3.5 rounded-xl text-xs sm:text-sm font-medium bg-rose-950/70 text-rose-200 border border-rose-700/80 animate-fade-in";
+    modalAlert.className = "mb-4 p-3.5 rounded-xl text-xs sm:text-sm font-medium bg-rose-950/80 text-rose-200 border border-rose-500/80 animate-fade-in shadow-lg shadow-rose-950";
   }
   modalAlert.innerHTML = message;
 }
@@ -364,9 +468,9 @@ function setActiveCategory(category) {
   document.querySelectorAll(".filter-btn").forEach((btn) => {
     const cat = btn.getAttribute("data-category");
     if (cat === category) {
-      btn.className = "filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-violet-600 text-white border border-violet-500 shadow-sm transition active:scale-95";
+      btn.className = "filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-orange-600 text-white border border-orange-500 shadow-md shadow-orange-950 transition active:scale-95";
     } else {
-      btn.className = "filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition active:scale-95";
+      btn.className = "filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800 hover:text-orange-300 transition active:scale-95";
     }
   });
 }
@@ -387,6 +491,62 @@ searchInput.addEventListener("input", (e) => {
   }, 250);
 });
 
+// ----------------------------------------------------------------------------
+// Spooky Oracle Modal Functions & Listeners
+// ----------------------------------------------------------------------------
+function showNextJoke() {
+  playSpookySound("chime");
+  currentJokeIndex = (currentJokeIndex + 1) % SPOOKY_JOKES.length;
+  if (oracleJokeBox) {
+    oracleJokeBox.classList.remove("animate-fade-in");
+    void oracleJokeBox.offsetWidth; // trigger reflow
+    oracleJokeBox.classList.add("animate-fade-in");
+    oracleJokeBox.innerHTML = SPOOKY_JOKES[currentJokeIndex];
+  }
+}
+
+function openSpookyOracle() {
+  playSpookySound("cackle");
+  if (oracleJokeBox) {
+    oracleJokeBox.innerHTML = SPOOKY_JOKES[currentJokeIndex];
+  }
+  if (spookyOracleModal) {
+    spookyOracleModal.classList.remove("hidden");
+  }
+}
+
+function closeSpookyOracle() {
+  if (spookyOracleModal) {
+    spookyOracleModal.classList.add("hidden");
+  }
+}
+
+if (spookyOracleBtn) {
+  spookyOracleBtn.addEventListener("click", openSpookyOracle);
+}
+if (oracleCloseBtn) {
+  oracleCloseBtn.addEventListener("click", closeSpookyOracle);
+}
+if (closeOracleBtn) {
+  closeOracleBtn.addEventListener("click", closeSpookyOracle);
+}
+if (nextJokeBtn) {
+  nextJokeBtn.addEventListener("click", showNextJoke);
+}
+if (spookySoundBtn) {
+  spookySoundBtn.addEventListener("click", () => {
+    playSpookySound("cackle");
+  });
+}
+
+if (spookyOracleModal) {
+  spookyOracleModal.addEventListener("click", (e) => {
+    if (e.target === spookyOracleModal) {
+      closeSpookyOracle();
+    }
+  });
+}
+
 // Modal close triggers
 modalCloseBtn.addEventListener("click", closeEventModal);
 registrationModal.addEventListener("click", (e) => {
@@ -395,10 +555,15 @@ registrationModal.addEventListener("click", (e) => {
   }
 });
 
-// Escape key closes modal
+// Escape key closes modals
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && !registrationModal.classList.contains("hidden")) {
-    closeEventModal();
+  if (e.key === "Escape") {
+    if (registrationModal && !registrationModal.classList.contains("hidden")) {
+      closeEventModal();
+    }
+    if (spookyOracleModal && !spookyOracleModal.classList.contains("hidden")) {
+      closeSpookyOracle();
+    }
   }
 });
 
@@ -406,3 +571,4 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("DOMContentLoaded", () => {
   fetchAndRenderEvents();
 });
+

@@ -414,18 +414,19 @@ function showAddAlert(message, type) {
 // Tab Switching
 // ----------------------------------------------------------------------------
 tabEventsBtn.addEventListener("click", () => {
-  tabEventsBtn.className = "tab-btn pb-3 text-sm font-bold border-b-2 border-violet-500 text-white flex items-center gap-2";
-  tabRegistrationsBtn.className = "tab-btn pb-3 text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2";
+  tabEventsBtn.className = "tab-btn pb-3 text-sm font-bold border-b-2 border-orange-500 text-white flex items-center gap-2";
+  tabRegistrationsBtn.className = "tab-btn pb-3 text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-orange-300 flex items-center gap-2";
   tabEventsContent.classList.remove("hidden");
   tabRegistrationsContent.classList.add("hidden");
 });
 
 tabRegistrationsBtn.addEventListener("click", () => {
-  tabRegistrationsBtn.className = "tab-btn pb-3 text-sm font-bold border-b-2 border-violet-500 text-white flex items-center gap-2";
-  tabEventsBtn.className = "tab-btn pb-3 text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 flex items-center gap-2";
+  tabRegistrationsBtn.className = "tab-btn pb-3 text-sm font-bold border-b-2 border-orange-500 text-white flex items-center gap-2";
+  tabEventsBtn.className = "tab-btn pb-3 text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-orange-300 flex items-center gap-2";
   tabRegistrationsContent.classList.remove("hidden");
   tabEventsContent.classList.add("hidden");
 });
+
 
 // Refresh button listener
 refreshBtn.addEventListener("click", () => {
