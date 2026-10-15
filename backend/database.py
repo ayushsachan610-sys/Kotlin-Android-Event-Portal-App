@@ -1,12 +1,26 @@
+import os
+import shutil
 import sqlite3
 from pathlib import Path
 
 # Database path anchored to the zenith26-fest-system project root
-DB_PATH = Path(__file__).resolve().parent.parent / "fest.db"
+ORIGINAL_DB_PATH = Path(__file__).resolve().parent.parent / "fest.db"
+
+# In serverless environments like Vercel, the source tree is read-only at runtime.
+# SQLite requires write permissions to create journals and write registrations,
+# so we copy fest.db to /tmp when running on Vercel.
+if os.environ.get("VERCEL"):
+    DB_PATH = Path("/tmp/fest.db")
+    if not DB_PATH.exists() and ORIGINAL_DB_PATH.exists():
+        shutil.copy2(ORIGINAL_DB_PATH, DB_PATH)
+else:
+    DB_PATH = ORIGINAL_DB_PATH
 
 
 def get_db_connection():
     """Returns a SQLite connection with row_factory set to sqlite3.Row and foreign keys enabled."""
+    if os.environ.get("VERCEL") and not DB_PATH.exists() and ORIGINAL_DB_PATH.exists():
+        shutil.copy2(ORIGINAL_DB_PATH, DB_PATH)
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON;")
