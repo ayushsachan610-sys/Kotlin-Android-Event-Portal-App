@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Zenith26" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/brand_600</item>
+        <item name="colorPrimaryVariant">@color/brand_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/fuchsia_500</item>
+        <item name="colorSecondaryVariant">@color/fuchsia_600</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/slate_900</item>
+        <item name="android:navigationBarColor">@color/slate_950</item>
+        <item name="android:windowBackground">@color/slate_900</item>
+        <item name="android:textColorPrimary">@color/slate_100</item>
+        <item name="android:textColorSecondary">@color/slate_400</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
+    </style>
+</resources>

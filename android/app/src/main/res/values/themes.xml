@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Zenith26" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color (Violet-600) -->
+        <item name="colorPrimary">@color/brand_600</item>
+        <item name="colorPrimaryVariant">@color/brand_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color (Fuchsia-500) -->
+        <item name="colorSecondary">@color/fuchsia_500</item>
+        <item name="colorSecondaryVariant">@color/fuchsia_600</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Status bar and navigation bar matching web dark theme -->
+        <item name="android:statusBarColor">@color/slate_900</item>
+        <item name="android:navigationBarColor">@color/slate_950</item>
+        <item name="android:windowBackground">@color/slate_900</item>
+
+        <!-- Text Colors -->
+        <item name="android:textColorPrimary">@color/slate_100</item>
+        <item name="android:textColorSecondary">@color/slate_400</item>
+
+        <!-- Bottom Sheet Dialog Theme -->
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:navigationBarColor">@color/slate_950</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/slate_900">
+
+    <!-- Top Sticky Navigation Bar (Matching Web Header) -->
+    <LinearLayout
+        android:id="@+id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:background="@color/slate_900">
+
+        <!-- Logo & Title -->
+        <TextView
+            android:id="@+id/tv_logo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nav_brand"
+            android:textColor="@color/brand_400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black" />
+
+        <!-- Navigation Tab: Events Portal -->
+        <TextView
+            android:id="@+id/btn_nav_events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_events_portal"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_pill_active"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Navigation Tab: Admin Dashboard -->
+        <TextView
+            android:id="@+id/btn_nav_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nav_admin_dashboard"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/slate_300"
+            android:background="@drawable/bg_pill_inactive"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Server Settings Icon -->
+        <ImageView
+            android:id="@+id/btn_nav_settings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_settings"
+            android:background="@drawable/bg_pill_inactive"
+            android:padding="8dp"
+            android:contentDescription="@string/nav_server_settings"
+            app:tint="@color/slate_300" />
+
+    </LinearLayout>
+
+    <!-- Header Bottom Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/slate_800" />
+
+    <!-- Fragment Container -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

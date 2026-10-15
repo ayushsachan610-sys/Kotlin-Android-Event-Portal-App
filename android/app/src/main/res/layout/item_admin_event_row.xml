@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_admin_event"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:padding="14dp"
+    android:layout_marginBottom="10dp">
+
+    <!-- Row 1: Icon, Title, Status Badge -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="6dp">
+
+        <TextView
+            android:id="@+id/tv_admin_event_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚡"
+            android:textSize="18sp"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tv_admin_event_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Code Sprint 2.0"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_admin_status_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Available"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:background="@drawable/bg_badge_gaming"
+            android:textColor="@color/emerald_300" />
+
+    </LinearLayout>
+
+    <!-- Row 2: Category & Schedule & Venue -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_admin_event_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Technical"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:background="@drawable/bg_badge_technical"
+            android:textColor="@color/cat_tech_text"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tv_admin_event_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Nov 14 • 10:00 AM"
+            android:textColor="@color/slate_400"
+            android:textSize="11sp"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tv_admin_event_venue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Main Auditorium"
+            android:textColor="@color/slate_400"
+            android:textSize="11sp"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <!-- Divider Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/slate_700"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Row 3: Registered / Capacity & Utilization % -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Occupancy:"
+            android:textColor="@color/slate_400"
+            android:textSize="11sp"
+            android:layout_marginEnd="4dp" />
+
+        <TextView
+            android:id="@+id/tv_admin_occupancy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="45 / 50 seats"
+            android:textColor="@color/slate_200"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Utilization:"
+            android:textColor="@color/slate_400"
+            android:textSize="11sp"
+            android:layout_marginEnd="4dp" />
+
+        <TextView
+            android:id="@+id/tv_admin_utilization_pct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="90.0%"
+            android:textColor="@color/rose_400"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace" />
+
+    </LinearLayout>
+
+</LinearLayout>

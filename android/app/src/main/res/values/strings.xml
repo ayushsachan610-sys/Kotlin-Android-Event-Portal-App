@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Zenith \'26</string>
+    <string name="nav_brand">⚡ ZENITH \'26</string>
+    <string name="nav_events_portal">Events Portal</string>
+    <string name="nav_admin_dashboard">Admin Dashboard</string>
+    <string name="nav_server_settings">Server Settings</string>
+
+    <!-- Hero Section -->
+    <string name="hero_tag">Annual Tech &amp; Cultural Extravaganza</string>
+    <string name="hero_title_prefix">Experience the Pulse of</string>
+    <string name="hero_title_brand">Zenith \'26</string>
+    <string name="hero_subtitle">Two adrenaline-packed days of tech battles, stage spectacles, esports tournaments, and hands-on workshops.</string>
+    <string name="hero_badge_date">📅 Nov 14–15, 2026</string>
+    <string name="hero_badge_venue">📍 Campus Main Grounds</string>
+    <string name="hero_badge_count">⚡ 14 Official Events</string>
+
+    <!-- Search & Filters -->
+    <string name="search_hint">Search events by title...</string>
+    <string name="filter_all">All</string>
+    <string name="filter_technical">Technical</string>
+    <string name="filter_cultural">Cultural</string>
+    <string name="filter_sports">Sports</string>
+    <string name="filter_gaming">Gaming</string>
+    <string name="filter_workshop">Workshop</string>
+
+    <!-- Statuses -->
+    <string name="loading_events">Loading Zenith \'26 events...</string>
+    <string name="no_events_found">No events match your search</string>
+    <string name="no_events_subtext">Try clearing your search query or selecting a different category.</string>
+    <string name="reset_filters">Reset Filters</string>
+    <string name="error_connect_server">Could not connect to the server</string>
+    <string name="error_server_subtext">Make sure the FastAPI backend is running at http://10.0.2.2:8021.</string>
+    <string name="retry_loading">Retry Loading</string>
+
+    <!-- Card Elements -->
+    <string name="view_details">View Details</string>
+    <string name="status_full">FULL</string>
+    <string name="free_entry">Free</string>
+    <string name="fee_prefix">₹%d</string>
+    <string name="seats_left">%1$d / %2$d seats left</string>
+    <string name="seats_count">%1$d / %2$d seats</string>
+
+    <!-- Modal Form -->
+    <string name="about_this_event">ABOUT THIS EVENT</string>
+    <string name="register_for_event">Register for this Event</string>
+    <string name="label_student_name">Student Full Name *</string>
+    <string name="hint_student_name">e.g. Ayush Sachan</string>
+    <string name="label_roll_number">Roll Number *</string>
+    <string name="hint_roll_number">e.g. 26HSB042</string>
+    <string name="label_phone_number">Phone Number (Optional)</string>
+    <string name="hint_phone_number">e.g. 9876543210</string>
+    <string name="label_email">College Email *</string>
+    <string name="hint_email">e.g. student@college.edu</string>
+    <string name="btn_confirm_registration">Confirm Registration</string>
+    <string name="btn_submitting">Submitting registration...</string>
+    <string name="btn_registration_closed">Registration Closed (Full)</string>
+
+    <!-- Admin Dashboard -->
+    <string name="admin_coordinator_center">Coordinator Center</string>
+    <string name="admin_dashboard_title">Live Operations Dashboard</string>
+    <string name="admin_dashboard_subtext">Real-time attendance capacity, registration analytics, and event monitoring.</string>
+    <string name="admin_add_event">+ Add Event</string>
+    <string name="admin_refresh">Refresh</string>
+    <string name="admin_live">Live</string>
+    <string name="stat_total_events">TOTAL EVENTS</string>
+    <string name="stat_total_events_sub">Scheduled across 2 days</string>
+    <string name="stat_total_registrations">TOTAL REGISTRATIONS</string>
+    <string name="stat_total_registrations_sub">Confirmed student sign-ups</string>
+    <string name="stat_overall_utilization">OVERALL UTILIZATION</string>
+    <string name="stat_upcoming_events">UPCOMING EVENTS</string>
+    <string name="stat_upcoming_events_sub">Events today or later</string>
+    <string name="category_breakdown_title">🏷️ Events by Category Breakdown</string>
+    <string name="tab_events_demand">🎪 Events Capacity &amp; Demand</string>
+    <string name="tab_registration_records">📋 Student Registration Records</string>
+    <string name="table_sorted_subtext">Sorted by Utilization % descending to spotlight high-demand and full events.</string>
+    <string name="capacity_warning">≥90% Capacity Warning</string>
+
+    <!-- Server Settings -->
+    <string name="settings_title">Backend Server Settings</string>
+    <string name="settings_desc">Configure the FastAPI host address. Use 10.0.2.2:8021 for standard Android Emulator, or your computer\'s Wi-Fi IP for a physical device.</string>
+    <string name="preset_emulator">Android Emulator (10.0.2.2:8021)</string>
+    <string name="preset_localhost">Localhost Loopback (127.0.0.1:8021)</string>
+    <string name="preset_custom">Custom Host IP Address</string>
+    <string name="btn_test_connection">Test Connection</string>
+    <string name="btn_save_settings">Save &amp; Apply</string>
+    <string name="btn_cancel">Cancel</string>
+</resources>

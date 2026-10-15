@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/slate_900">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="48dp">
+
+            <!-- Hero Section (Matching Web UI) -->
+            <LinearLayout
+                android:id="@+id/hero_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="28dp"
+                android:paddingBottom="24dp"
+                android:background="@color/slate_900">
+
+                <!-- Tag Chip -->
+                <TextView
+                    android:id="@+id/tv_hero_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hero_tag"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/brand_300"
+                    android:background="@drawable/bg_badge_workshop"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Hero Heading -->
+                <TextView
+                    android:id="@+id/tv_hero_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hero_title_prefix"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-black" />
+
+                <TextView
+                    android:id="@+id/tv_hero_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hero_title_brand"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/brand_400"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-black"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Hero Subtitle -->
+                <TextView
+                    android:id="@+id/tv_hero_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hero_subtitle"
+                    android:textSize="13sp"
+                    android:textColor="@color/slate_300"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- 3 Event Metadata Badges -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hero_badge_date"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_button_secondary"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:layout_marginEnd="6dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hero_badge_venue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_button_secondary"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:layout_marginEnd="6dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hero_badge_count"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_button_secondary"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Hero Bottom Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/slate_800"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Search Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_search_input"
+                android:layout_marginHorizontal="16dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="@string/search_hint"
+                    app:tint="@color/slate_400" />
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@null"
+                    android:hint="@string/search_hint"
+                    android:textColor="@color/slate_100"
+                    android:textColorHint="@color/slate_400"
+                    android:textSize="14sp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <!-- Category Filter Horizontal Scroll -->
+            <HorizontalScrollView
+                android:id="@+id/scroll_category_filters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="16dp"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:id="@+id/layout_category_filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pill_cat_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter_all"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_pill_active"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="7dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/pill_cat_tech"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter_technical"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_pill_inactive"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="7dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/pill_cat_cultural"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter_cultural"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_pill_inactive"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="7dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/pill_cat_sports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter_sports"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_pill_inactive"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="7dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/pill_cat_gaming"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter_gaming"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_pill_inactive"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="7dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/pill_cat_workshop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/filter_workshop"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_300"
+                        android:background="@drawable/bg_pill_inactive"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="7dp" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <!-- Loading Indicator -->
+            <LinearLayout
+                android:id="@+id/layout_loading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="48dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ProgressBar
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:indeterminateTint="@color/brand_500" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading_events"
+                    android:textColor="@color/slate_400"
+                    android:textSize="14sp"
+                    android:layout_marginTop="12dp" />
+
+            </LinearLayout>
+
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/layout_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:padding="24dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔍"
+                    android:textSize="40sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_events_found"
+                    android:textColor="@color/slate_200"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_events_subtext"
+                    android:textColor="@color/slate_400"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp" />
+
+                <Button
+                    android:id="@+id/btn_reset_filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reset_filters"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_button_primary"
+                    android:textSize="12sp"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+            <!-- Error State -->
+            <LinearLayout
+                android:id="@+id/layout_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_alert_error"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:padding="24dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚠️"
+                    android:textSize="40sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/error_connect_server"
+                    android:textColor="@color/rose_300"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_error_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/error_server_subtext"
+                    android:textColor="@color/slate_300"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp" />
+
+                <Button
+                    android:id="@+id/btn_retry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/retry_loading"
+                    android:textColor="@color/white"
+                    android:background="@drawable/bg_badge_full"
+                    android:textSize="12sp"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+            <!-- Events RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_events"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="16dp"
+                tools:listitem="@layout/item_event_card" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

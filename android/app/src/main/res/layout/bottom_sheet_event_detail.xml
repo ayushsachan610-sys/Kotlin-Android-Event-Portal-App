@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_modal_sheet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Top Drag Handle & Close Button Row -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:background="@drawable/bg_pill_inactive"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp" />
+
+            <ImageView
+                android:id="@+id/btn_modal_close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_close"
+                android:contentDescription="Close"
+                android:padding="6dp"
+                android:background="@drawable/bg_pill_inactive"
+                android:layout_alignParentEnd="true"
+                app:tint="@color/slate_300" />
+
+        </RelativeLayout>
+
+        <!-- Event Header in Modal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="top"
+            android:layout_marginBottom="16dp">
+
+            <!-- Emoji Icon -->
+            <TextView
+                android:id="@+id/tv_modal_icon"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:gravity="center"
+                android:text="⚡"
+                android:textSize="26sp"
+                android:background="@drawable/bg_card_inner"
+                android:layout_marginEnd="12dp" />
+
+            <!-- Title & Badges -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_modal_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Technical"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="3dp"
+                        android:background="@drawable/bg_badge_technical"
+                        android:textColor="@color/cat_tech_text"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/tv_modal_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Free Entry"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/emerald_400" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_modal_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Code Sprint 2.0"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Event Metadata Box (Matching Web Grid) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_inner"
+            android:padding="14dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date &amp; Time"
+                        android:textSize="11sp"
+                        android:textColor="@color/slate_400" />
+
+                    <TextView
+                        android:id="@+id/tv_modal_datetime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="2026-11-14 at 10:00 AM"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_200"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Venue"
+                        android:textSize="11sp"
+                        android:textColor="@color/slate_400" />
+
+                    <TextView
+                        android:id="@+id/tv_modal_venue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Main Auditorium"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_200"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/slate_700"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Seat Availability"
+                    android:textSize="11sp"
+                    android:textColor="@color/slate_400" />
+
+                <TextView
+                    android:id="@+id/tv_modal_seats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="95 seats available (out of 100)"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/emerald_400" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- About This Event -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_this_event"
+            android:textColor="@color/slate_400"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tv_modal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="24-hour hackathon where teams solve real-world problems. Mentors and food provided."
+            android:textColor="@color/slate_300"
+            android:textSize="13sp"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Divider Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/slate_700"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Register for this Event Heading -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_for_event"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Alert Banner (Success / Error) -->
+        <LinearLayout
+            android:id="@+id/layout_modal_alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_alert_error"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_alert_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_error"
+                android:contentDescription="Alert"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tv_modal_alert_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Please provide a valid email containing '@'."
+                android:textColor="@color/rose_300"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Form: Student Full Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_student_name"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/slate_300"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_reg_name"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_search_input"
+            android:hint="@string/hint_student_name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/slate_500"
+            android:textSize="13sp"
+            android:paddingHorizontal="14dp"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Form: Roll Number & Phone (Grid Row) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_roll_number"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/slate_300"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/et_reg_roll"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_search_input"
+                    android:hint="@string/hint_roll_number"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/slate_500"
+                    android:textSize="13sp"
+                    android:paddingHorizontal="14dp"
+                    android:inputType="textCapCharacters" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_phone_number"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/slate_300"
+                    android:layout_marginBottom="4dp" />
+
+                <EditText
+                    android:id="@+id/et_reg_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_search_input"
+                    android:hint="@string/hint_phone_number"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/slate_500"
+                    android:textSize="13sp"
+                    android:paddingHorizontal="14dp"
+                    android:inputType="phone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Form: College Email -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_email"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/slate_300"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/et_reg_email"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_search_input"
+            android:hint="@string/hint_email"
+            android:textColor="@color/white"
+            android:textColorHint="@color/slate_500"
+            android:textSize="13sp"
+            android:paddingHorizontal="14dp"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Confirm Registration Button -->
+        <Button
+            android:id="@+id/btn_reg_submit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/btn_confirm_registration"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_gradient"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card"
+    android:layout_marginBottom="16dp"
+    android:padding="16dp">
+
+    <!-- Top Row: Icon, Category Badge, Fee Indicator -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <!-- Emoji Icon Box -->
+        <TextView
+            android:id="@+id/tv_event_icon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:gravity="center"
+            android:text="⚡"
+            android:textSize="22sp"
+            android:background="@drawable/bg_card_inner" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Category Badge -->
+        <TextView
+            android:id="@+id/tv_event_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Technical"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_badge_technical"
+            android:textColor="@color/cat_tech_text"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Fee Indicator -->
+        <TextView
+            android:id="@+id/tv_event_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Free"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/emerald_400" />
+
+    </LinearLayout>
+
+    <!-- Event Title -->
+    <TextView
+        android:id="@+id/tv_event_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Code Sprint 2.0"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+    <!-- Event Description Preview -->
+    <TextView
+        android:id="@+id/tv_event_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Join us for an exciting 24-hour hackathon and algorithmic programming competition."
+        android:textColor="@color/slate_400"
+        android:textSize="12sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Divider Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/slate_700" />
+
+    <!-- Metadata: Date/Time & Venue -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:id="@+id/tv_event_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2026-11-14 • 10:00 AM"
+                android:textColor="@color/slate_300"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:id="@+id/tv_event_venue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Main Auditorium"
+                android:textColor="@color/slate_300"
+                android:textSize="12sp"
+                android:singleLine="true"
+                android:ellipsize="end" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Divider Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/slate_700" />
+
+    <!-- Bottom Row: Seat Availability Badge & View Details Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="12dp">
+
+        <!-- Seat Badge Container -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_seat_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="95 / 100 seats"
+                android:textSize="11sp"
+                android:textColor="@color/slate_400"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp" />
+
+        </FrameLayout>
+
+        <!-- View Details Button -->
+        <Button
+            android:id="@+id/btn_view_details"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/view_details"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_button_primary"
+            android:textAllCaps="false"
+            android:paddingHorizontal="16dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

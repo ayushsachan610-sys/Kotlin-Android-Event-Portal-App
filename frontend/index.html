@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenith '26 — College Fest Portal</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  
+  <!--
+    Tailwind CSS Play CDN:
+    Used here for classroom prototyping & local development.
+    NOTE: A production deployment would use a compiled and minified stylesheet.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              900: '#4c1d95',
+            },
+            accent: {
+              400: '#f43f5e',
+              500: '#e11d48',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(8px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">⚡</span>
+        <a href="/" class="text-xl sm:text-2xl font-black tracking-tight bg-gradient-to-r from-violet-400 via-pink-400 to-amber-300 bg-clip-text text-transparent hover:opacity-90 transition">
+          ZENITH '26
+        </a>
+      </div>
+
+      <nav class="flex items-center space-x-3 sm:space-x-4">
+        <a href="/" class="text-sm font-semibold text-white px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">
+          Events Portal
+        </a>
+        <a href="/admin.html" class="text-sm font-semibold text-violet-300 hover:text-white px-3 py-1.5 rounded-lg border border-violet-500/30 hover:border-violet-500 hover:bg-violet-600/20 transition flex items-center gap-1.5">
+          <span>⚙️</span>
+          <span>Admin Dashboard</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-900 via-violet-950/40 to-slate-900 border-b border-slate-800/80">
+    <div class="max-w-4xl mx-auto text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-violet-500/10 text-violet-300 border border-violet-500/20">
+        <span class="inline-block w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+        Annual Tech & Cultural Extravaganza
+      </div>
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white leading-tight">
+        Experience the Pulse of <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-rose-400 bg-clip-text text-transparent">
+          Zenith '26
+        </span>
+      </h1>
+      <p class="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto">
+        Two adrenaline-packed days of tech battles, stage spectacles, esports tournaments, and hands-on workshops.
+      </p>
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm font-medium text-slate-400">
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700/60">
+          📅 Nov 14–15, 2026
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700/60">
+          📍 Campus Main Grounds
+        </span>
+        <span class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1 rounded-md border border-slate-700/60">
+          ⚡ 14 Official Events
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content: Search, Filter, Events Grid -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 w-full space-y-8">
+    
+    <!-- Controls: Search Input & Category Filter Buttons -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <!-- Search Input -->
+      <div class="relative w-full md:w-80">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search events by title..."
+          class="w-full pl-9 pr-4 py-2.5 bg-slate-800/90 border border-slate-700 rounded-xl text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition shadow-inner"
+        />
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="category-filters" class="flex flex-wrap items-center gap-2" role="group" aria-label="Category Filters">
+        <button data-category="All" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-violet-600 text-white border border-violet-500 shadow-sm transition hover:bg-violet-500 active:scale-95">All</button>
+        <button data-category="Technical" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition active:scale-95">Technical</button>
+        <button data-category="Cultural" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition active:scale-95">Cultural</button>
+        <button data-category="Sports" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition active:scale-95">Sports</button>
+        <button data-category="Gaming" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition active:scale-95">Gaming</button>
+        <button data-category="Workshop" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition active:scale-95">Workshop</button>
+      </div>
+    </div>
+
+    <!-- Status Message Container (Loading / Error / Empty States) -->
+    <div id="status-container" class="hidden py-12 text-center"></div>
+
+    <!-- Events Grid Container -->
+    <div id="events-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+  </main>
+
+  <!-- Event Detail & Registration Modal -->
+  <div id="registration-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-lg shadow-2xl p-6 sm:p-8 animate-fade-in text-slate-100">
+      
+      <!-- Close button -->
+      <button id="modal-close-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl leading-none p-1 rounded-lg hover:bg-slate-800 transition">
+        &times;
+      </button>
+
+      <!-- Event Header in Modal -->
+      <div class="flex items-start gap-3.5 mb-4">
+        <span id="modal-icon" class="text-3xl p-2.5 rounded-xl bg-slate-800 border border-slate-700/80"></span>
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span id="modal-category" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-500/20 text-violet-300 border border-violet-500/30"></span>
+            <span id="modal-fee" class="text-xs font-medium text-emerald-400"></span>
+          </div>
+          <h2 id="modal-title" class="text-xl sm:text-2xl font-bold text-white tracking-tight"></h2>
+        </div>
+      </div>
+
+      <!-- Event Metadata in Modal -->
+      <div class="grid grid-cols-2 gap-3 py-3 mb-4 text-xs text-slate-300 bg-slate-800/60 rounded-xl p-3 border border-slate-800">
+        <div>
+          <span class="block text-slate-400">Date & Time</span>
+          <span id="modal-datetime" class="font-semibold text-slate-200"></span>
+        </div>
+        <div>
+          <span class="block text-slate-400">Venue</span>
+          <span id="modal-venue" class="font-semibold text-slate-200"></span>
+        </div>
+        <div class="col-span-2 flex items-center justify-between border-t border-slate-700/50 pt-2 mt-1">
+          <span class="text-slate-400">Seat Availability</span>
+          <span id="modal-seats" class="font-semibold"></span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">About This Event</h4>
+        <p id="modal-description" class="text-sm text-slate-300 leading-relaxed"></p>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="border-t border-slate-800 pt-5">
+        <h3 class="text-base font-bold text-white mb-3">Register for this Event</h3>
+
+        <!-- Form Inline Alerts (Error or Success) -->
+        <div id="modal-alert" class="hidden mb-4 p-3 rounded-xl text-sm"></div>
+
+        <form id="registration-form" class="space-y-3.5">
+          <input type="hidden" id="modal-event-id" value="" />
+
+          <div>
+            <label for="reg-name" class="block text-xs font-semibold text-slate-300 mb-1">Student Full Name <span class="text-rose-400">*</span></label>
+            <input type="text" id="reg-name" required placeholder="e.g. Ayush Sachan" class="w-full px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+            <p id="reg-name-error" class="hidden text-xs text-rose-400 mt-1"></p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="reg-roll" class="block text-xs font-semibold text-slate-300 mb-1">Roll Number <span class="text-rose-400">*</span></label>
+              <input type="text" id="reg-roll" required placeholder="e.g. 26HSB042" class="w-full px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+              <p id="reg-roll-error" class="hidden text-xs text-rose-400 mt-1"></p>
+            </div>
+            <div>
+              <label for="reg-phone" class="block text-xs font-semibold text-slate-300 mb-1">Phone Number (Optional)</label>
+              <input type="tel" id="reg-phone" placeholder="e.g. 9876543210" class="w-full px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+            </div>
+          </div>
+
+          <div>
+            <label for="reg-email" class="block text-xs font-semibold text-slate-300 mb-1">College Email <span class="text-rose-400">*</span></label>
+            <input type="email" id="reg-email" required placeholder="e.g. student@college.edu" class="w-full px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition" />
+            <p id="reg-email-error" class="hidden text-xs text-rose-400 mt-1"></p>
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="submit"
+              id="reg-submit-btn"
+              class="w-full py-2.5 px-4 rounded-xl font-bold text-sm bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-600/30 transition hover:shadow-violet-600/50 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              <span>Confirm Registration</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-800 bg-slate-950 py-6 px-4 text-center text-xs text-slate-500">
+    <p>Zenith '26 College Fest Management System &bull; Product Management II: Technology & Agile Execution</p>
+  </footer>
+
+  <!-- Student Portal Application Script -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

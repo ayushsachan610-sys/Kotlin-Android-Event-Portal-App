@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Slate Palette (Matching Tailwind CSS Slate) -->
+    <color name="slate_950">#020617</color>
+    <color name="slate_900">#0F172A</color>
+    <color name="slate_850">#131E33</color>
+    <color name="slate_800">#1E293B</color>
+    <color name="slate_750">#283548</color>
+    <color name="slate_700">#334155</color>
+    <color name="slate_600">#475569</color>
+    <color name="slate_500">#64748B</color>
+    <color name="slate_400">#94A3B8</color>
+    <color name="slate_300">#CBD5E1</color>
+    <color name="slate_200">#E2E8F0</color>
+    <color name="slate_100">#F1F5F9</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Brand Violet / Purple Palette -->
+    <color name="brand_50">#F5F3FF</color>
+    <color name="brand_100">#EDE9FE</color>
+    <color name="brand_200">#DDD6FE</color>
+    <color name="brand_300">#C4B5FD</color>
+    <color name="brand_400">#A78BFA</color>
+    <color name="brand_500">#8B5CF6</color>
+    <color name="brand_600">#7C3AED</color>
+    <color name="brand_700">#6D28D9</color>
+    <color name="brand_800">#5B21B6</color>
+    <color name="brand_900">#4C1D95</color>
+    <color name="brand_950">#2E1065</color>
+
+    <!-- Accent Fuchsia & Pink -->
+    <color name="fuchsia_300">#F0ABFC</color>
+    <color name="fuchsia_400">#E879F9</color>
+    <color name="fuchsia_500">#D946EF</color>
+    <color name="fuchsia_600">#C026D3</color>
+    <color name="pink_400">#F472B6</color>
+
+    <!-- Emerald / Green -->
+    <color name="emerald_300">#6EE7B7</color>
+    <color name="emerald_400">#34D399</color>
+    <color name="emerald_500">#10B981</color>
+    <color name="emerald_900">#064E3B</color>
+    <color name="emerald_950">#022C22</color>
+
+    <!-- Amber / Yellow -->
+    <color name="amber_300">#FCD34D</color>
+    <color name="amber_400">#FBBF24</color>
+    <color name="amber_500">#F59E0B</color>
+    <color name="amber_900">#78350F</color>
+    <color name="amber_950">#451A03</color>
+
+    <!-- Rose / Red -->
+    <color name="rose_300">#FDA4AF</color>
+    <color name="rose_400">#FB7185</color>
+    <color name="rose_500">#F43F5E</color>
+    <color name="rose_600">#E11D48</color>
+    <color name="rose_900">#881337</color>
+    <color name="rose_950">#4C0519</color>
+
+    <!-- Cyan / Blue -->
+    <color name="cyan_300">#67E8F9</color>
+    <color name="cyan_400">#22D3EE</color>
+    <color name="cyan_500">#06B6D4</color>
+    <color name="cyan_900">#164E63</color>
+    <color name="cyan_950">#083344</color>
+
+    <!-- Category Badges: Background, Text, Border -->
+    <color name="cat_tech_bg">#2E083344</color>
+    <color name="cat_tech_text">#67E8F9</color>
+    <color name="cat_tech_border">#4D06B6D4</color>
+
+    <color name="cat_cultural_bg">#2E4A044E</color>
+    <color name="cat_cultural_text">#F0ABFC</color>
+    <color name="cat_cultural_border">#4DD946EF</color>
+
+    <color name="cat_sports_bg">#2E451A03</color>
+    <color name="cat_sports_text">#FCD34D</color>
+    <color name="cat_sports_border">#4DF59E0B</color>
+
+    <color name="cat_gaming_bg">#2E022C22</color>
+    <color name="cat_gaming_text">#6EE7B7</color>
+    <color name="cat_gaming_border">#4D10B981</color>
+
+    <color name="cat_workshop_bg">#2E2E1065</color>
+    <color name="cat_workshop_text">#C4B5FD</color>
+    <color name="cat_workshop_border">#4D8B5CF6</color>
+
+    <color name="cat_default_bg">#33334155</color>
+    <color name="cat_default_text">#CBD5E1</color>
+    <color name="cat_default_border">#66475569</color>
+
+    <!-- Modal Scrim -->
+    <color name="modal_scrim">#CC000000</color>
+</resources>
